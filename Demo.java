@@ -31,7 +31,9 @@ public class Demo {
 		System.out.println("War has " + wordsCounter.get("война") + " encounters in the book.");
 		System.out.println("Peace has " + wordsCounter.get("мир") + " encounters in the book.");
 		
-		System.out.println("App took " + ((System.currentTimeMillis()-start)/1000) + " seconds to run.");
+		System.out.print("App took ");
+		System.out.format("%.2f",((double)(System.currentTimeMillis()-start)/1000));
+		System.out.println("s to run.");
 
 	}
 	
