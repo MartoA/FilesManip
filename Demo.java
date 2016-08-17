@@ -5,7 +5,7 @@ import java.util.*;
 import java.util.Map.Entry;
 public class Demo {
 	
-	static TreeMap<String, Integer> wordsCounter = new TreeMap<String, Integer>();
+	private static TreeMap<String, Integer> wordsCounter = new TreeMap<String, Integer>();
 	
 	public static void main(String[] args) {
 		long start = System.currentTimeMillis();
@@ -30,6 +30,8 @@ public class Demo {
 		mostCommonWord();
 		System.out.println("War has " + wordsCounter.get("война") + " encounters in the book.");
 		System.out.println("Peace has " + wordsCounter.get("мир") + " encounters in the book.");
+		
+		mapToFile();
 		
 		System.out.print("App took ");
 		System.out.format("%.2f",((double)(System.currentTimeMillis()-start)/1000));
@@ -95,6 +97,28 @@ public class Demo {
 			}
 		}
 		System.out.println("The most common word is " + mostCommon + " = " + count + " times.");
+	}
+	
+	private static void mapToFile(){
+		File map = new File("Map.txt");
+		String separator = System.getProperty("line.separator");
+		
+		try(FileWriter fw = new FileWriter(map)) {
+			map.createNewFile();
+			for(Entry<String, Integer> entry : wordsCounter.entrySet()){
+				fw.write(entry.getKey());
+				fw.write("=" + entry.getValue());
+				fw.write(separator);
+			}
+		} catch (IOException e) {
+			System.out.println("File was not created.");
+		}
+		
+		
+		for(Entry<String, Integer> entry : wordsCounter.entrySet()){
+			
+		}
+		
 	}
 
 }
